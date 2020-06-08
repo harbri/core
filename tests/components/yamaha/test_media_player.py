@@ -40,10 +40,7 @@ class TestYamahaMediaPlayer(unittest.TestCase):
         self.device = FakeYamahaDevice(
             "http://receiver", "Receiver", zones=[self.main_zone]
         )
-
-    def tearDown(self):
-        """Stop everything that was started."""
-        self.hass.stop()
+        self.addCleanup(self.hass.stop)
 
     def enable_output(self, port, enabled):
         """Enable output on a specific port."""
